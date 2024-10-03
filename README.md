@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://expressjs.com/" target="blank"><img src="images/express-and-ts.png" alt="Express Logo" width="512" /></a>
+</p>
+
 <h1 align="center"> NodeJs Express TypeScript Template </h1>
 
 <p align="center">

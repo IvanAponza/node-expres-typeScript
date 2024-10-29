@@ -1,4 +1,4 @@
-import exoress, { Router } from 'express';
+import express, { Router } from 'express';
 import path from 'path';
 
 export interface Options {
@@ -9,10 +9,10 @@ export interface Options {
 
 export class Server {
 
-    public readonly app = exoress()
+    public readonly app = express()
 
     private readonly port: number;
-    private serverListener?: any;
+    private httpServer?: any;
     private readonly routes: Router;
     private readonly public_path: string;
 
@@ -27,8 +27,8 @@ export class Server {
     start(){
 
         //Middleware
-        this.app.use(exoress.json()); //raw
-        this.app.use(exoress.urlencoded({extended: true})); // x-www-form-urlencoded
+        this.app.use(express.json()); //raw
+        this.app.use(express.urlencoded({extended: true})); // x-www-form-urlencoded
 
         //Rutas 
         this.app.use(this.routes);
@@ -40,12 +40,12 @@ export class Server {
         })
         
         //Puerto
-        this.serverListener = this.app.listen(this.port, () => {
+        this.httpServer = this.app.listen(this.port, () => {
             console.log(`Server running on port http://localhost:${this.port}`);
         });
     }
 
     public close(){
-        this.serverListener?.close();
+        this.httpServer?.close();
     }
 }
